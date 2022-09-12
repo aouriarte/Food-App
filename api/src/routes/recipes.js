@@ -42,7 +42,6 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         console.log('ERROR EN RUTA GET A /recipes/:id', error)
     }
-
 }); // findOne o findByPk (Primary Key)
 
 
