@@ -19,7 +19,6 @@ router.get('/', async (req, res) => {
         else {
             res.status(200).send(info);
         }
-
     } catch (error) {
         console.log('ERROR EN RUTA GET A /recipes', error);
     }
