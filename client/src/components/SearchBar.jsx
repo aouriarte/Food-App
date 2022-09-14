@@ -20,18 +20,12 @@ export default function SearchBar() {
   return (
     <div>
       <input
-        type="text"
-        placeholder="Search recipe... "
-        onChange={(e) => {
-          handleName(e);
-        }}
+        type="search"
+        placeholder="Search Recipe..."
+        value={name}
+        onChange={(e) => handleName(e)}
       ></input>
-      <button
-        type="submit"
-        onClick={(e) => {
-          handleSubmit(e);
-        }}
-      >
+      <button type="submit" onClick={(e) => handleSubmit(e)}>
         Search
       </button>
     </div>
