@@ -11,7 +11,7 @@ const getApiInfo = async () => {
         let recipes = info.data.results.map(r => {
             return {
                 id: r.id,
-                name: r.title,
+                title: r.title,
                 image: r.image,
                 summary: r.summary,
                 healthScore: r.healthScore,
