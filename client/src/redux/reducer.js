@@ -4,12 +4,17 @@ import {
     GET_RECIPE_NAME,
     GET_RECIPE_DETAILS,
     POST_RECIPE,
+    FILTER_DIETS,
+    ORDER_TITLE,
+    ORDER_SCORE,
+    CLEAN_RECIPES
 } from './actions.js';
 
 const initialState = {
-    recipes: [],
+    allRecipes: [],
     recipesDetails: {},
-    diets: [],
+    recipesFilter: [],
+    allDiets: [],
 }
 
 const rootReducer = (state = initialState, { type, payload }) => {
@@ -17,17 +22,18 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_ALL_RECIPES:
             return {
                 ...state,
-                recipes: payload,
+                allRecipes: payload,
+                recipesFilter: payload,
             };
         case GET_ALL_DIETS:
             return {
                 ...state,
-                diets: payload,
+                allDiets: payload,
             };
         case GET_RECIPE_NAME:
             return {
                 ...state,
-                recipes: payload,
+                allRecipes: payload,
             };
         case GET_RECIPE_DETAILS:
             return {
@@ -37,6 +43,86 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case POST_RECIPE:
             return {
                 ...state,
+            };
+        case FILTER_DIETS:
+            let filterDiets = state.recipesFilter.filter((recipes) => {
+                if (recipes.allDiets) {
+                    let aux = recipes.allDiets.map((diet) => diet.name);
+                    return aux.includes(payload);
+                }
+                if (recipes.aux) {
+                    return recipes.aux.includes(payload);
+                }
+                else {
+                    return null;
+                }
+            });
+            return {
+                ...state,
+                allRecipes: filterDiets === 'all'
+                    ? state.recipesFilter
+                    : filterDiets
+            };
+        case ORDER_TITLE:
+            let sortTitle = payload === 'ASC'
+                ? state.allRecipes.sort((a, b) => {
+                    if (a.title > b.title) {
+                        return 1;
+                    }
+                    if (b.title > a.title) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+                })
+                : state.allRecipes.sort((a, b) => {
+                    if (a.title > b.title) {
+                        return -1;
+                    }
+                    if (b.title > a.title) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                });
+            return {
+                ...state,
+                allRecipes: sortTitle
+            };
+        case ORDER_SCORE:
+            let sortScore = payload === 'MAX'
+                ? state.allRecipes.sort((a, b) => {
+                    if (a.healthScore < b.healthScore) {
+                        return 1;
+                    }
+                    if (b.healthScore < a.healthScore) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+                })
+                : state.allRecipes.sort((a, b) => {
+                    if (a.healthScore < b.healthScore) {
+                        return -1;
+                    }
+                    if (b.healthScore < a.healthScore) {
+                        return 1;
+                    }
+                    else {
+                        return 0;
+                    }
+                });
+            return {
+                ...state,
+                allRecipes: sortScore
+            };
+        case CLEAN_RECIPES:
+            return {
+                ...state,
+                recipesFilter: payload
             };
         default: {
             return state
