@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         let info = await getTotalInfo();
 
         if (name) {
-            let recipeName = info.find(r => r.name.toLowerCase() === name.toLowerCase());
+            let recipeName = info.filter(r => r.title.toLowerCase() === name.toLowerCase());
             recipeName
                 ? res.status(200).send(recipeName)
                 : res.status(404).send('No existe esa receta')
@@ -48,10 +48,10 @@ router.get('/:id', async (req, res) => {
 // RUTA POST -> /recipes (crear receta) ---------------------
 router.post('/', async (req, res) => {
     try {
-        const { name, summary, healthScore, steps, image, diets } = req.body;
+        const { title, summary, healthScore, steps, image, diets } = req.body;
 
         const newRecipe = await Recipe.create({
-            name,
+            title,
             summary,
             healthScore,
             steps,
@@ -62,7 +62,7 @@ router.post('/', async (req, res) => {
             where: { name: diets }
         });
 
-        if (!name) return res.status(400).send('La receta debe tener un título');
+        if (!title) return res.status(400).send('La receta debe tener un título');
         if (!summary) return res.status(400).send('La receta debe tener un summary')
 
         newRecipe.addDiet(dietDB);
