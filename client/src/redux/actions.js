@@ -6,6 +6,11 @@ export const GET_RECIPE_NAME = 'GET_RECIPE_NAME';
 export const GET_RECIPE_DETAILS = 'GET_RECIPE_DETAILS';
 export const POST_RECIPE = 'POST_RECIPE';
 
+export const FILTER_DIETS = 'FILTER_DIETS';
+export const ORDER_TITLE = 'ORDER_TITLE';
+export const ORDER_SCORE = 'ORDER_SCORE';
+export const CLEAN_RECIPES = 'CLEAN_RECIPES';
+
 
 // ALL RECIPES: Traigo recetas -> BACK ---------------------------------------------
 export const getAllRecipes = () => {
@@ -39,7 +44,7 @@ export const getRecipeName = (name) => {
 export const getRecipeDetail = (id) => {
     return async (dispatch) => {
         try {
-            let infoDetails = await axios.get(`http://localhost:3001/recipes${id}`);
+            let infoDetails = await axios.get(`http://localhost:3001/recipes/${id}`);
             dispatch({ type: GET_RECIPE_DETAILS, payload: infoDetails.data });
 
         } catch (error) {
@@ -72,4 +77,41 @@ export const getAllDiets = () => {
             console.log('ERROR EN getAllDiets', error)
         }
     };
+};
+
+
+// Filtrados y Ordenamientos -----------------------------------------------------------
+// Filtrar por DIETS:
+export const filterDiets = (payload) => {
+    return {
+        type: FILTER_DIETS,
+        payload
+    };
+};
+
+
+// Ordenar por TITLE:
+export const orderTitle = (payload) => {
+    return {
+        type: ORDER_TITLE,
+        payload
+    };
+};
+
+
+// Ordenar por HealthScore:
+export const orderHealthScore = (payload) => {
+    return {
+        type: ORDER_SCORE,
+        payload
+    };
+};
+
+
+// Limpiar Filtrados y Ordenamientos
+export const cleanRecipes = (dispatch) => {
+    return dispatch({
+        type: CLEAN_RECIPES,
+        payload: []
+    });
 };
