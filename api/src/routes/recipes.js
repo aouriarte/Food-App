@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
 
         if (name) {
             let recipeName = info.filter(r => r.title.toLowerCase() === name.toLowerCase());
-            recipeName
+            recipeName.length
                 ? res.status(200).send(recipeName)
                 : res.status(404).send('No existe esa receta')
         }
@@ -37,7 +37,6 @@ router.get('/:id', async (req, res) => {
                 ? res.status(200).send(recipeID)
                 : res.status(404).send('No se encontraron detalles de la receta')
         }
-
     } catch (error) {
         console.log('ERROR EN RUTA GET A /recipes/:id', error)
     }
