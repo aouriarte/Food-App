@@ -97,6 +97,5 @@ const getAllDiets = async () => {
     }
 };
 
-
 //----------------------------------------------------------------------
 module.exports = { getApiInfo, getDBInfo, getTotalInfo, getAllDiets }
