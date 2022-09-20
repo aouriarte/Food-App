@@ -14,15 +14,15 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    summary: { // Resumen del plato*
-      type: DataTypes.STRING,
+    summary: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    healthScore: { // Nivel de "comida saludable"
+    healthScore: {
       type: DataTypes.FLOAT,
       allowNull: true,
     },
-    steps: { // Paso a paso
+    steps: {
       type: DataTypes.TEXT,
       allowNull: true,
     },
