@@ -1,0 +1,30 @@
+.input {
+  padding: 9px 12px 7px 12px;
+  border-radius: 4px;
+  font-weight: 550;
+  color: rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  box-shadow: 0 0 6px #000000a8;
+}
+
+.input:hover {
+  cursor: text;
+  box-shadow: 0 0 5px 7px #000000a8;
+}
+
+.button {
+  margin-left: 15px;
+  padding: 8px 17px;
+  border-radius: 4px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background-color: #594a47;
+  box-shadow: 0 0 6px #000000a8;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #e9e3d0;
+  color: black;
+  box-shadow: 0 0 5px 7px #000000a8;
+}

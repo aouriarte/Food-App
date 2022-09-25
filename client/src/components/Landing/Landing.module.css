@@ -1,0 +1,47 @@
+.landing {
+    background-image: url("../../img/fondo.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: cover;
+    width: 100vw;
+    height: 100vh;
+    background-attachment: fixed;
+    overflow: auto;
+    margin: 0%;
+}
+
+.div {
+  display: flex;
+  margin-top: 37rem;
+  margin-left: 21rem;
+  position: fixed;
+}
+
+.img {
+    margin-left: 3rem;
+    margin-top: 8rem;
+    margin-bottom: 10rem;
+    position: fixed;
+}
+
+.h1 {
+    margin-right: 2rem;
+}
+
+.button {
+  padding: 1rem 3rem;
+  margin-top: 1rem;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background-color: #594A47;
+  box-shadow: 0 0 0px 6px #b4ad95a8;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #E9E3D0;
+  color: black;
+  box-shadow: 0 0 10px 12px #000000a8;
+}

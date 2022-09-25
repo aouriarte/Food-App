@@ -1,0 +1,28 @@
+.img {
+  width: 340px;
+  height: 230px;
+}
+
+.h3 {
+  margin-top: 5px;
+  margin-bottom: 13px;
+  margin-left: 1px;
+  font-weight: 600;
+}
+
+.label {
+  font-weight: 500;
+  margin-left: 5px;
+}
+
+.p {
+  display: inline-block;
+  margin: 0.05rem 0.2rem 0.05rem 0.2rem;
+  margin-bottom: 5px;
+  font-size: smaller;
+  padding: 0.1rem 0.4rem;
+  margin-left: 1px;
+  border-radius: 15px;
+  background-color: #b4ad95a8;
+  width: fit-content;
+}

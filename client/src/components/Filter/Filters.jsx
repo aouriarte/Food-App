@@ -5,7 +5,9 @@ import {
   filterDiets,
   orderTitle,
   orderHealthScore,
-} from "../redux/actions";
+} from "../../redux/actions";
+
+import styles from "./Filters.module.css";
 
 export default function Filters({ setPage, setOrder }) {
   const dispatch = useDispatch();
@@ -29,7 +31,7 @@ export default function Filters({ setPage, setOrder }) {
   const handleOrderScore = (e) => {
     e.preventDefault();
     dispatch(orderHealthScore(e.target.value));
-    setPage(1)
+    setPage(1);
     setOrder(e.target.value);
   };
 
@@ -39,12 +41,14 @@ export default function Filters({ setPage, setOrder }) {
 
   // ---------------------------------------------------------------
   return (
-    <div>
-      <div>
-        {/*No me anda el filter diet*/}
-        <h4>Filter</h4>
-        <select onChange={(e) => handleFilterDiets(e)}>
-            <option value='all'>Select Diet</option>
+    <div className={styles.filters}>
+      <div className={styles.divOne}>
+        <h4 className={styles.h4} >Filter</h4>
+        <select
+          className={styles.select}
+          onChange={(e) => handleFilterDiets(e)}
+        >
+          <option value="all">Select Diet</option>
           {allDiets?.map((d) => {
             return (
               <option key={d.id} value={d.name}>
@@ -55,17 +59,17 @@ export default function Filters({ setPage, setOrder }) {
         </select>
       </div>
 
-      <div>
-        <h4>Order</h4>
-        <select onChange={(e) => handleOrderTitle(e)}>
-            <option value='ALL'>By Title</option>
-            <option value='ASC'>A-Z</option>
-            <option value='DESC'>Z-A</option>
+      <div className={styles.divTwo}>
+        <h4 className={styles.h4}>Order</h4>
+        <select className={styles.select} onChange={(e) => handleOrderTitle(e)}>
+          <option value="ALL">By Title</option>
+          <option value="ASC">A-Z</option>
+          <option value="DESC">Z-A</option>
         </select>
-        <select onChange={(e) => handleOrderScore(e)}>
-            <option value='ALL'>By HealthScore</option>
-            <option value='MIN'>+ HealthScore</option>
-            <option value='MAX'>- HealthScore</option>
+        <select className={styles.select} onChange={(e) => handleOrderScore(e)}>
+          <option value="ALL">By HealthScore</option>
+          <option value="MIN">+ HealthScore</option>
+          <option value="MAX">- HealthScore</option>
         </select>
       </div>
     </div>

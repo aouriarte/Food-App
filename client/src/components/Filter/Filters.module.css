@@ -1,0 +1,44 @@
+.h4 {
+  font-size: 1.1rem;
+  margin-left: 6.7rem;
+  margin-bottom: 1rem;
+}
+
+.select {
+  margin-bottom: 10rem;
+  margin-left: 5rem;
+  margin-right: -3rem;
+  padding: 6px 14px;
+  padding-right: 0;
+  border-radius: 4px;
+  font-weight: 400;
+  color: rgb(255, 255, 255);
+  background-color: #594a47;
+  box-shadow: 0 0 6px #000000a8;
+}
+
+.select:hover {
+  cursor: pointer;
+  background-color: #e9e3d0;
+  color: black;
+  box-shadow: 0 0 5px 7px #000000a8;
+}
+
+.divOne {
+  margin-top: 12rem;
+  margin-left: 22rem;
+}
+
+.divTwo {
+  margin-top: 12rem;
+  margin-left: 5rem;
+}
+
+.filters {
+  position: relative;
+  height: 5rem;
+  max-width: 100%;
+  padding: 1 3rem;
+  display: flex;
+  align-items: center;
+}
