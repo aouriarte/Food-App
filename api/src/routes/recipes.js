@@ -24,7 +24,6 @@ router.get('/', async (req, res) => {
     }
 }); // findAll
 
-
 // RUTA GET -> /recipes/:id -------------------------------------
 router.get('/:id', async (req, res) => {
     try {
@@ -41,7 +40,6 @@ router.get('/:id', async (req, res) => {
         console.log('ERROR EN RUTA GET A /recipes/:id', error)
     }
 }); // findOne o findByPk (Primary Key)
-
 
 // RUTA POST -> /recipes (crear receta) ---------------------
 router.post('/', async (req, res) => {

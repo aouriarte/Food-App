@@ -1,5 +1,4 @@
 const { Router } = require('express');
-// Importar todos los routers;
 const recipes = require('./recipes.js');
 const diets = require('./diets.js');
 
