@@ -13,7 +13,7 @@ import {
 const initialState = {
     allRecipes: [],
     recipesDetails: {},
-    recipesFilter: [],
+    recipesFilter: [], 
     allDiets: [],
 }
 
@@ -22,8 +22,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_ALL_RECIPES:
             return {
                 ...state,
-                allRecipes: payload,
                 recipesFilter: payload,
+                allRecipes: payload,
             };
         case GET_ALL_DIETS:
             return {
@@ -46,12 +46,9 @@ const rootReducer = (state = initialState, { type, payload }) => {
             };
         case FILTER_DIETS:
             let filterDiets = state.recipesFilter.filter((recipes) => {
-                if (recipes.allDiets) {
-                    let aux = recipes.allDiets.map((diet) => diet.name);
-                    return aux.includes(payload);
-                }
-                if (recipes.aux) {
-                    return recipes.aux.includes(payload);
+                if (recipes.diets) {
+                    let aux = recipes.diets.includes(payload);
+                    return aux;
                 }
                 else {
                     return null;
