@@ -6,7 +6,7 @@ const { API_KEY, API_KEY2, API_KEY3 } = process.env;
 const getApiInfo = async () => {
     try {
         // me traigo 100 recetas:
-        let info = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY2}&number=100&addRecipeInformation=true`)
+        let info = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
 
         let recipes = info.data.results.map(r => {
             return {
@@ -26,11 +26,10 @@ const getApiInfo = async () => {
     }
 };
 
-
 // GET DB INFO -------------------------------------------------------
 const getDBInfo = async () => {
     try {
-        return await Recipe.findAll({
+        const dbInfo = await Recipe.findAll({
             include: {
                 model: Diet,
                 attributes: ['name'],
@@ -39,11 +38,14 @@ const getDBInfo = async () => {
                 },
             }
         });
+        var dato = JSON.parse(JSON.stringify(dbInfo, null, 2));
+        dato.forEach((e) => (e.diets = e.diets.map((d) => d.name)));
+        return dato;
+
     } catch (error) {
         console.log('ERROR EN getDBInfo/utils', error);
     }
 };
-
 
 // GET TOTAL INFO (API + DB) -----------------------------------------
 const getTotalInfo = async () => {
@@ -56,7 +58,6 @@ const getTotalInfo = async () => {
         console.log('ERROR EN getTotalInfo', error);
     }
 };
-
 
 // GET ALL DIETS 
 const getAllDiets = async () => {
