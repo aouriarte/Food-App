@@ -1,13 +1,13 @@
 .landing {
-    background-image: url("../../img/fondo.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: cover;
-    width: 100vw;
-    height: 100vh;
-    background-attachment: fixed;
-    overflow: auto;
-    margin: 0%;
+  background-image: url("../../img/fondo.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: cover;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: auto;
+  margin: 0%;
 }
 
 .div {
@@ -18,14 +18,14 @@
 }
 
 .img {
-    margin-left: 3rem;
-    margin-top: 8rem;
-    margin-bottom: 10rem;
-    position: fixed;
+  margin-left: 3rem;
+  margin-top: 8rem;
+  margin-bottom: 10rem;
+  position: fixed;
 }
 
 .h1 {
-    margin-right: 2rem;
+  margin-right: 2rem;
 }
 
 .button {
@@ -33,15 +33,16 @@
   margin-top: 1rem;
   font-size: 1.5rem;
   border-radius: 10px;
+  border: none;
   font-weight: 550;
   color: rgb(255, 255, 255);
-  background-color: #594A47;
-  box-shadow: 0 0 0px 6px #b4ad95a8;
+  background-color: #594a47;
+  box-shadow: 0 0px 6px #000000a8;
 }
 
 .button:hover {
   cursor: pointer;
-  background-color: #E9E3D0;
+  background-color: #e9e3d0;
   color: black;
   box-shadow: 0 0 10px 12px #000000a8;
 }

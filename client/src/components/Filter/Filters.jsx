@@ -52,7 +52,7 @@ export default function Filters({ setPage, setOrder }) {
           {allDiets?.map((d) => {
             return (
               <option key={d.id} value={d.name}>
-                {d.name}
+                {d.name.charAt(0).toUpperCase() + d.name.slice(1)}
               </option>
             );
           })}

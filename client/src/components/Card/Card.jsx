@@ -10,7 +10,7 @@ export default function Card({ image, title, diets }) {
       <label className={styles.label}>Diets: </label>
       {diets?.map((d) => (
         <p className={styles.p} key={d}>
-          {d}
+          {d.charAt(0).toUpperCase() + d.slice(1)}
         </p>
       ))}
       

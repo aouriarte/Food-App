@@ -21,6 +21,8 @@ export default function CardDetails(props) {
           <div className={styles.header}>
             <img
               src={recipe.image ? recipe.image : img}
+              width='312px'
+              height='231px'
               alt="Img not found"
             />
             <h2>{recipe.title}</h2>
@@ -28,14 +30,14 @@ export default function CardDetails(props) {
             {recipe.diets?.map((r, i) => {
               return (
                 <p className={styles.p} key={i}>
-                  {r}
+                  {r.charAt(0).toUpperCase() + r.slice(1)}
                 </p>
               );
             })}
           </div>
           <div className={styles.description}>
             <label className={styles.label}>Summary: </label>
-            <p>{recipe.summary}</p>
+            <p>{recipe.summary && recipe.summary.replace(/<[^>]+>/g, "")}</p>
             <label className={styles.label}>Health Score: </label>
             <p>{recipe.healthScore}</p>
             <label className={styles.label}>Steps: </label>
