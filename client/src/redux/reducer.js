@@ -7,7 +7,8 @@ import {
     FILTER_DIETS,
     ORDER_TITLE,
     ORDER_SCORE,
-    CLEAN_RECIPES
+    CLEAN_RECIPES,
+    CLEAN_DETAILS
 } from './actions.js';
 
 const initialState = {
@@ -121,9 +122,14 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
                 recipesFilter: payload
             };
+        case CLEAN_DETAILS:
+            return {
+                ...state,
+                recipesDetails: payload
+            };
         default: {
             return state
-        }
+        };
     }
 };
 
