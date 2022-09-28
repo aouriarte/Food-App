@@ -10,6 +10,7 @@ export const FILTER_DIETS = 'FILTER_DIETS';
 export const ORDER_TITLE = 'ORDER_TITLE';
 export const ORDER_SCORE = 'ORDER_SCORE';
 export const CLEAN_RECIPES = 'CLEAN_RECIPES';
+export const CLEAN_DETAILS = 'CLEAN_DETAILS';
 
 
 // ALL RECIPES: Traigo recetas -> BACK ---------------------------------------------
@@ -25,7 +26,6 @@ export const getAllRecipes = () => {
     };
 };
 
-
 // NAME: Traigo a la receta por su nombre -------------------------------------------
 export const getRecipeName = (name) => {
     return async (dispatch) => {
@@ -34,11 +34,11 @@ export const getRecipeName = (name) => {
             dispatch({ type: GET_RECIPE_NAME, payload: infoName.data });
 
         } catch (error) {
+            alert('That recipe does not exist');
             console.log('ERROR EN getRecipeName/actions', error);
         }
     };
 };
-
 
 // DETAILS: Traigo a la receta y sus datos desde el ID -----------------------------
 export const getRecipeDetail = (id) => {
@@ -65,7 +65,6 @@ export const postRecipe = (payload) => {
     }
 };
 
-
 // ALL DIETS: Traigo los tipos de dieta -> BACK ---------------------------------------
 export const getAllDiets = () => {
     return async (dispatch) => {
@@ -89,7 +88,6 @@ export const filterDiets = (payload) => {
     };
 };
 
-
 // Ordenar por TITLE:
 export const orderTitle = (payload) => {
     return {
@@ -97,7 +95,6 @@ export const orderTitle = (payload) => {
         payload
     };
 };
-
 
 // Ordenar por HealthScore:
 export const orderHealthScore = (payload) => {
@@ -107,11 +104,18 @@ export const orderHealthScore = (payload) => {
     };
 };
 
-
 // Limpiar Filtrados y Ordenamientos
 export const cleanRecipes = (dispatch) => {
     return dispatch({
         type: CLEAN_RECIPES,
+        payload: []
+    });
+};
+
+// Limpiar Detalles 
+export const cleanDetail = (dispatch) => {
+    return dispatch({
+        type: CLEAN_DETAILS,
         payload: []
     });
 };
