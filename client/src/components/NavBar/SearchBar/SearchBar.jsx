@@ -4,20 +4,23 @@ import { getRecipeName } from "../../../redux/actions";
 
 import styles from "./SearchBar.module.css";
 
-export default function SearchBar() {
+export default function SearchBar({ setPage }) {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
 
   function handleName(e) {
     e.preventDefault();
     setName(e.target.value);
-  }
+  };
 
   function handleSubmit(e) {
     e.preventDefault();
     dispatch(getRecipeName(name));
     setName("");
-  }
+    // setTimeout(() => {
+    //   setPage(1);
+    // }, 2000);
+  };
 
   return (
     <div className={styles.div}>
@@ -28,7 +31,11 @@ export default function SearchBar() {
         value={name}
         onChange={(e) => handleName(e)}
       ></input>
-      <button className={styles.button} type="submit" onClick={(e) => handleSubmit(e)}>
+      <button
+        className={styles.button}
+        type="submit"
+        onClick={(e) => handleSubmit(e)}
+      >
         Search
       </button>
     </div>

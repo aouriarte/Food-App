@@ -11,9 +11,6 @@ export default function CreateRecipe() {
   const history = useHistory();
   const allDiets = useSelector((state) => state.allDiets);
   const [errors, setErrors] = useState({});
-  // const [errorBtn, setErrorBtn] = useState(
-  //   Object.values(errors).length !== 0 ? true : false
-  // );
 
   // ESTADOS LOCALES ---------------------------------------------------------------------
   const [input, setInput] = useState({
@@ -37,7 +34,6 @@ export default function CreateRecipe() {
         [e.target.name]: e.target.value,
       })
     );
-    //setErrorBtn(validate(input));
   };
 
   // SELECCIONAR DIETA:
@@ -58,18 +54,21 @@ export default function CreateRecipe() {
   // REVISIÓN DEL FORMULARIO --------------------------------------
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setErrors(validate(input));
-    // let error = validate(input);
 
     if (Object.keys(errors).length !== 0) {
       alert("Error. Check the form");
-    } else {
+    } else if (!input.title.length) {
+      alert("The title is required");
+    } else if (!input.diets.length) {
+      alert("Select at least one diet");
+    } 
+    else {
       dispatch(postRecipe(input));
       alert("¡Your recipe is created!");
       setInput({
         title: "",
         summary: "",
-        healthScore: 0,
+        healthScore: "",
         steps: "",
         image: "",
         diets: [],
@@ -89,34 +88,29 @@ export default function CreateRecipe() {
       <div className={styles.container}>
         <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
           <div className={styles.header}>
-            
-              <label className={styles.label}>Title: </label>
-              <input
-                type="text"
-                name="title"
-                placeholder="Title"
-                autoComplete="off"
-                value={input.title}
-                onChange={(e) => handleChange(e)}
-                className={styles.input}
-              ></input>
-              {errors.title && <p className={styles.p}>{errors.title}</p>}
-            
-            
-              <label className={styles.label}>Summary: </label>
-              <textarea
-                type="text"
-                name="summary"
-                maxLength="1000"
-                placeholder="Summary of your recipe"
-                autoComplete="off"
-                value={input.summary}
-                onChange={(e) => handleChange(e)}
-                className={styles.textarea}
-              ></textarea>
-              {errors.summary && <p className={styles.p}>{errors.summary}</p>}
-            
-
+            <label className={styles.label}>Title: </label>
+            <input
+              type="text"
+              name="title"
+              placeholder="Title"
+              autoComplete="off"
+              value={input.title}
+              onChange={(e) => handleChange(e)}
+              className={styles.input}
+            ></input>
+            {errors.title && <p className={styles.p}>{errors.title}</p>}
+            <label className={styles.label}>Summary: </label>
+            <textarea
+              type="text"
+              name="summary"
+              maxLength="1000"
+              placeholder="Summary of your recipe"
+              autoComplete="off"
+              value={input.summary}
+              onChange={(e) => handleChange(e)}
+              className={styles.textarea}
+            ></textarea>
+            {errors.summary && <p className={styles.p}>{errors.summary}</p>}
             <label className={styles.label}>Steps: </label>
             <textarea
               type="text"
@@ -128,34 +122,31 @@ export default function CreateRecipe() {
               className={styles.textarea}
             ></textarea>
             {errors.steps && <p className={styles.p}>{errors.steps}</p>}
-
-            
-              <label className={styles.label}>Health Score: </label>
-              <input
-                type="number"
-                min="0"
-                max="100"
-                name="healthScore"
-                placeholder="0"
-                value={input.healthScore}
-                onChange={(e) => handleChange(e)}
-                className={styles.input}
-              ></input>
-              {errors.healthScore && (
-                <p className={styles.p}>{errors.healthScore}</p>
-              )}
-           
-              <label className={styles.label}>Image: </label>
-              <input
-                type="url"
-                name="image"
-                placeholder="Enter the url"
-                autoComplete="off"
-                value={input.image}
-                onChange={(e) => handleChange(e)}
-                className={styles.input}
-              ></input>
-            
+            <label className={styles.label}>Health Score: </label>
+            <input
+              type="number"
+              min="0"
+              max="100"
+              name="healthScore"
+              placeholder="1"
+              value={input.healthScore}
+              onChange={(e) => handleChange(e)}
+              className={styles.input}
+            ></input>
+            {errors.healthScore && (
+              <p className={styles.p}>{errors.healthScore}</p>
+            )}
+            <label className={styles.label}>Image: </label>
+            <input
+              type="url"
+              name="image"
+              placeholder="Enter the url"
+              autoComplete="off"
+              value={input.image}
+              onChange={(e) => handleChange(e)}
+              className={styles.input}
+            ></input>
+            {errors.image && <p className={styles.p}>{errors.image}</p>}
             <button className={styles.b}>¡Create my recipe!</button>
           </div>
           <div className={styles.diets}>
@@ -177,7 +168,6 @@ export default function CreateRecipe() {
           </div>
         </form>
       </div>
-
       <Link to="/home">
         <button className={styles.button}>Go back</button>
       </Link>

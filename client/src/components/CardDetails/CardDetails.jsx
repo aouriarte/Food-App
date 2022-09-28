@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getRecipeDetail } from "../../redux/actions";
+import { getRecipeDetail, cleanDetail } from "../../redux/actions";
 import { Link } from "react-router-dom";
 
 import img from "../../img/receta.jpg";
@@ -12,6 +12,7 @@ export default function CardDetails(props) {
 
   useEffect(() => {
     dispatch(getRecipeDetail(props.match.params.id));
+    dispatch(cleanDetail(dispatch))
   }, [dispatch]);
 
   return (

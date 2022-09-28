@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import styles from "./NavBar.module.css";
 
-export default function NavBar() {
+export default function NavBar({setPage}) {
   return (
     <header className={styles.header}>
         <img

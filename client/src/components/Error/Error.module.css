@@ -1,0 +1,28 @@
+.error {
+  background-image: url("../../img/error404.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: cover;
+  width: 100vw;
+  height: 100vh;
+  background-attachment: fixed;
+  overflow: auto;
+  margin: 0%;
+}
+
+.button {
+  margin-top: 19rem;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 550;
+  color: rgb(255, 255, 255);
+  background-color: #594a47;
+  box-shadow: 0 0 6px #000000a8;
+}
+
+.button:hover {
+  cursor: pointer;
+  background-color: #e9e3d0;
+  color: black;
+  box-shadow: 0 0 5px 7px #000000a8;
+}

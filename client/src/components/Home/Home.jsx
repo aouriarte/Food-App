@@ -48,7 +48,7 @@ export default function Home() {
         <Filters setPage={setPage} setOrder={setOrder} />
         <div className={styles.divThree}>
           <button className={styles.button} onClick={(e) => handleClean(e)}>
-            Clear filters
+            Clean filters
           </button>
         </div>
       </div>
