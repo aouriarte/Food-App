@@ -69,8 +69,8 @@ export default function Filters({ setPage, setOrder }) {
         </select>
         <select className={styles.select} onChange={(e) => handleOrderScore(e)}>
           <option value="ALL">By HealthScore</option>
-          <option value="MIN">+ HealthScore</option>
-          <option value="MAX">- HealthScore</option>
+          <option value="MIN">- HealthScore</option>
+          <option value="MAX">+ HealthScore</option>
         </select>
       </div>
     </div>

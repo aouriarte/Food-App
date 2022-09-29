@@ -13,7 +13,6 @@ export default function Card({ image, title, diets }) {
           {d.charAt(0).toUpperCase() + d.slice(1)}
         </p>
       ))}
-      
     </div>
   );
 }

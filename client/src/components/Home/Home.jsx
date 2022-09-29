@@ -29,7 +29,7 @@ export default function Home() {
   const pagination = (pageNumber) => {
     setPage(pageNumber);
   };
-
+  
   // LIMPIAR FILTRADOS -------------------------------------------
   const handleClean = (e) => {
     e.preventDefault();
