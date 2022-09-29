@@ -8,7 +8,8 @@ import {
     ORDER_TITLE,
     ORDER_SCORE,
     CLEAN_RECIPES,
-    CLEAN_DETAILS
+    CLEAN_DETAILS,
+    FILTER_CREATED
 } from './actions.js';
 
 const initialState = {
