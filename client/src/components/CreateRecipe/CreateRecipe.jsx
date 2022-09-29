@@ -9,6 +9,7 @@ import styles from "./CreateRecipe.module.css";
 export default function CreateRecipe() {
   const dispatch = useDispatch();
   const history = useHistory();
+  const allRecipes = useSelector((state) => state.allRecipes);
   const allDiets = useSelector((state) => state.allDiets);
   const [errors, setErrors] = useState({});
 
@@ -59,9 +60,12 @@ export default function CreateRecipe() {
       alert("Error. Check the form");
     } else if (!input.title.length) {
       alert("The title is required");
+    
     } else if (!input.diets.length) {
       alert("Select at least one diet");
-    } 
+    } else if (allRecipes.find(r => r.title.toLowerCase() === input.title.toLowerCase())){
+      alert(`The ${input.title} already exists`);
+    }
     else {
       dispatch(postRecipe(input));
       alert("¡Your recipe is created!");

@@ -21,7 +21,7 @@ export default function NavBar({setPage}) {
         <button className={styles.button}>Create recipe</button>
       </Link>
       <div className={styles.div}>
-        <SearchBar />
+        <SearchBar setPage={setPage} />
       </div>
     </header>
   );

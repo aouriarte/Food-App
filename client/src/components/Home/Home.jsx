@@ -6,6 +6,7 @@ import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
 import Pagination from "../Pagination/Pagination";
 import Filters from "../Filter/Filters";
+import Loading from "../Loading/Loading.jsx";
 
 import styles from "./Home.module.css";
 
@@ -43,7 +44,7 @@ export default function Home() {
   //---------------------------------------------------------------
   return (
     <div className={styles.home}>
-      <NavBar />
+      <NavBar setPage={setPage}/>
       <div className={styles.filter}>
         <Filters setPage={setPage} setOrder={setOrder} />
         <div className={styles.divThree}>
@@ -55,11 +56,7 @@ export default function Home() {
       <br></br>
       <div className={styles.container}>
         {currentRecipes.length < 1 ? (
-          <div className={styles.loading}>
-            <span className={styles.dot}></span>
-            <span className={styles.dot}></span>
-            <span className={styles.dot}></span>
-          </div>
+          <Loading />
         ) : (
           currentRecipes?.map((r,i) => {
             return (

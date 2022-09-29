@@ -5,6 +5,7 @@ import {
   filterDiets,
   orderTitle,
   orderHealthScore,
+  filterCreated,
 } from "../../redux/actions";
 
 import styles from "./Filters.module.css";
@@ -43,7 +44,7 @@ export default function Filters({ setPage, setOrder }) {
   return (
     <div className={styles.filters}>
       <div className={styles.divOne}>
-        <h4 className={styles.h4} >Filter</h4>
+        <h4 className={styles.h4}>Filter</h4>
         <select
           className={styles.select}
           onChange={(e) => handleFilterDiets(e)}

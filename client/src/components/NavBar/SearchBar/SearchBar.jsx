@@ -17,9 +17,9 @@ export default function SearchBar({ setPage }) {
     e.preventDefault();
     dispatch(getRecipeName(name));
     setName("");
-    // setTimeout(() => {
-    //   setPage(1);
-    // }, 2000);
+    setTimeout(() => {
+      setPage(1);
+    }, 6000);
   };
 
   return (

@@ -10,6 +10,14 @@
   margin: 0%;
 }
 
+.load {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 20rem;
+}
+
 .container {
   margin-top: 2rem;
   margin-bottom: -6rem;
@@ -68,7 +76,6 @@
 }
 
 .button {
-  margin-right: 4rem;
   padding: 8px 16px;
   border-radius: 4px;
   font-weight: 550;

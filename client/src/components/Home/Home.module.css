@@ -9,37 +9,6 @@
   background-repeat: repeat;
 }
 
-/* Loading */
-.loading {
-  display: flex;
-  margin-top: 20rem;
-}
-
-.dot {
-  width: 15px;
-  height: 15px;
-  background-color: black;
-  border-radius: 50%;
-  animation: wavy 0.4s ease-in infinite alternate;
-}
-
-.dot:not(:last-child) {
-  margin-right: 10px;
-}
-
-@keyframes wavy {
-  to {
-    transform: translateY(-10px);
-  }
-}
-
-.dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.dot:not(:last-child) {
-  animation-delay: 0.4s;
-}
-
 /* Cards */
 .container {
   width: 100%;
