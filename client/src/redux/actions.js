@@ -1,10 +1,13 @@
 import axios from 'axios';
+import swal from "sweetalert";
 
 export const GET_ALL_RECIPES = 'GET_ALL_RECIPES';
 export const GET_ALL_DIETS = 'GET_ALL_DIETS';
 export const GET_RECIPE_NAME = 'GET_RECIPE_NAME';
 export const GET_RECIPE_DETAILS = 'GET_RECIPE_DETAILS';
 export const POST_RECIPE = 'POST_RECIPE';
+
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 export const FILTER_DIETS = 'FILTER_DIETS';
 export const ORDER_TITLE = 'ORDER_TITLE';
@@ -34,7 +37,7 @@ export const getRecipeName = (name) => {
             dispatch({ type: GET_RECIPE_NAME, payload: infoName.data });
 
         } catch (error) {
-            alert('That recipe does not exist');
+            swal("Oops", "That recipe does not exist", "error");
             console.log('ERROR EN getRecipeName/actions', error);
         }
     };
@@ -105,17 +108,23 @@ export const orderHealthScore = (payload) => {
 };
 
 // Limpiar Filtrados y Ordenamientos
-export const cleanRecipes = (dispatch) => {
-    return dispatch({
+export const cleanRecipes = () => {
+    return{
         type: CLEAN_RECIPES,
-        payload: []
-    });
+    };
 };
 
 // Limpiar Detalles 
-export const cleanDetail = (dispatch) => {
-    return dispatch({
+export const cleanDetail = () => {
+    return {
         type: CLEAN_DETAILS,
-        payload: []
-    });
+    };
+};
+
+// PAGINADO: Cambiar de página --------------------------------------------------------
+export const changePage = (payload) => {
+    return {
+        type: CHANGE_PAGE,
+        payload
+    };
 };

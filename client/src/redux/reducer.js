@@ -9,22 +9,26 @@ import {
     ORDER_SCORE,
     CLEAN_RECIPES,
     CLEAN_DETAILS,
-    FILTER_CREATED
+    FILTER_CREATED,
+    CHANGE_PAGE
 } from './actions.js';
 
 const initialState = {
+    recipes: [],
     allRecipes: [],
     recipesDetails: {},
-    recipesFilter: [], 
     allDiets: [],
-}
+
+    recipesPerPage: 9,
+    currentPage: 1
+};
 
 const rootReducer = (state = initialState, { type, payload }) => {
     switch (type) {
         case GET_ALL_RECIPES:
             return {
                 ...state,
-                recipesFilter: payload,
+                recipes: payload,
                 allRecipes: payload,
             };
         case GET_ALL_DIETS:
@@ -35,7 +39,8 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case GET_RECIPE_NAME:
             return {
                 ...state,
-                allRecipes: payload,
+                recipes: payload,
+                currentPage: 1
             };
         case GET_RECIPE_DETAILS:
             return {
@@ -47,24 +52,18 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 ...state,
             };
         case FILTER_DIETS:
-            let filterDiets = state.recipesFilter.filter((recipes) => {
-                if (recipes.diets) {
-                    let aux = recipes.diets.includes(payload);
-                    return aux;
-                }
-                else {
-                    return null;
-                }
-            });
+            let copyAll = state.allRecipes;
+            let filterDiets = payload === "all"
+            ? copyAll
+            : copyAll.filter((r) => r.diets.includes(payload));
             return {
                 ...state,
-                allRecipes: filterDiets === 'all'
-                    ? state.recipesFilter
-                    : filterDiets
+                recipes: filterDiets,
+                currentPage: 1
             };
         case ORDER_TITLE:
             let sortTitle = payload === 'ASC'
-                ? state.allRecipes.sort((a, b) => {
+                ? state.recipes.sort((a, b) => {
                     if (a.title > b.title) {
                         return 1;
                     }
@@ -75,7 +74,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                         return 0;
                     }
                 })
-                : state.allRecipes.sort((a, b) => {
+                : state.recipes.sort((a, b) => {
                     if (a.title > b.title) {
                         return -1;
                     }
@@ -88,11 +87,12 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 });
             return {
                 ...state,
-                allRecipes: sortTitle
+                recipes: sortTitle,
+                currentPage: 1
             };
         case ORDER_SCORE:
             let sortScore = payload === 'MAX'
-                ? state.allRecipes.sort((a, b) => {
+                ? state.recipes.sort((a, b) => {
                     if (a.healthScore < b.healthScore) {
                         return 1;
                     }
@@ -103,7 +103,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
                         return 0;
                     }
                 })
-                : state.allRecipes.sort((a, b) => {
+                : state.recipes.sort((a, b) => {
                     if (a.healthScore < b.healthScore) {
                         return -1;
                     }
@@ -116,17 +116,23 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 });
             return {
                 ...state,
-                allRecipes: sortScore
+                recipes: sortScore,
+                currentPage: 1
+            };
+        case CHANGE_PAGE:
+            return {
+                ...state,
+                currentPage: Number(payload) ? parseInt(payload) : payload === 'Next' ? (parseInt(state.currentPage) + 1) : (parseInt(state.currentPage) - 1)
             };
         case CLEAN_RECIPES:
             return {
                 ...state,
-                recipesFilter: payload
+                recipes: []
             };
         case CLEAN_DETAILS:
             return {
                 ...state,
-                recipesDetails: payload
+                recipesDetails: []
             };
         default: {
             return state

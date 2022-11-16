@@ -1,11 +1,9 @@
 const axios = require('axios');
 const { Recipe, Diet } = require('../db.js');
-const { API_KEY, API_KEY2, API_KEY3 } = process.env;
 
 // GET API INFO ------------------------------------------------------
 const getApiInfo = async () => {
     try {
-        // me traigo 100 recetas:
         let info = await axios.get('https://run.mocky.io/v3/84b3f19c-7642-4552-b69c-c53742badee5')
 
         let recipes = info.data.results.map(r => {
@@ -22,7 +20,7 @@ const getApiInfo = async () => {
         return recipes;
 
     } catch (error) {
-        console.log('ERROR EN getApiInfo/utils', error);
+        console.log('ERROR EN getApiInfo/controllers', error);
     }
 };
 
@@ -43,7 +41,7 @@ const getDBInfo = async () => {
         return dato;
 
     } catch (error) {
-        console.log('ERROR EN getDBInfo/utils', error);
+        console.log('ERROR EN getDBInfo/controllers', error);
     }
 };
 
@@ -55,7 +53,7 @@ const getTotalInfo = async () => {
         return [...apiInfo, ...dbInfo];
 
     } catch (error) {
-        console.log('ERROR EN getTotalInfo', error);
+        console.log('ERROR EN getTotalInfo/controllers', error);
     }
 };
 
@@ -72,10 +70,7 @@ const getAllDiets = async () => {
             "gluten free",
             "dairy free",
             "ketogenic",
-            "vegetarian",
-            "lacto vegetarian",
             "lacto ovo vegetarian",
-            "ovo vegetarian",
             "vegan",
             "pescatarian",
             "paleolithic",
@@ -94,7 +89,7 @@ const getAllDiets = async () => {
         return diets;
 
     } catch (error) {
-        console.log('ERROR EN getAllDiets/utils', error);
+        console.log('ERROR EN getAllDiets/controllers', error);
     }
 };
 

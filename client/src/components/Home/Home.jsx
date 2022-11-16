@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cleanRecipes, getAllRecipes } from "../../redux/actions.js";
+import { getAllRecipes } from "../../redux/actions.js";
 import { Link } from "react-router-dom";
 import Card from "../Card/Card";
 import NavBar from "../NavBar/NavBar";
@@ -12,53 +12,40 @@ import styles from "./Home.module.css";
 
 export default function Home() {
   const dispatch = useDispatch();
-  const allRecipes = useSelector((state) => state.allRecipes);
+  const allRecipes = useSelector((state) => state?.recipes);
 
   // PAGINADO ---------------------------------------------------------
   const [order, setOrder] = useState("");
-  const [page, setPage] = useState(1);
-  const [recipesPerPage, setRecipesPerPage] = useState(9);
-  const indexOfLastRecipes = page * recipesPerPage;
+  const currentPage = useSelector((state) => state.currentPage);
+  const recipesPerPage = useSelector((state) => state.recipesPerPage);
+  const indexOfLastRecipes = currentPage * recipesPerPage;
   const indexOfFirsRecipes = indexOfLastRecipes - recipesPerPage;
 
-  const currentRecipes = allRecipes.slice(
+  const currentRecipes = allRecipes?.slice(
     indexOfFirsRecipes,
     indexOfLastRecipes
   );
 
-  const pagination = (pageNumber) => {
-    setPage(pageNumber);
-  };
-  
-  // LIMPIAR FILTRADOS -------------------------------------------
-  const handleClean = (e) => {
-    e.preventDefault();
-    dispatch(cleanRecipes(dispatch));
-    dispatch(getAllRecipes());
-  };
-
+  //----------------------------------------------------------------
   useEffect(() => {
-    dispatch(getAllRecipes());
-  }, [dispatch]);
+    if (allRecipes.length === 0) {
+      dispatch(getAllRecipes());
+    }
+  }, [dispatch, allRecipes]);
 
   //---------------------------------------------------------------
   return (
     <div className={styles.home}>
-      <NavBar setPage={setPage}/>
+      <NavBar />
       <div className={styles.filter}>
-        <Filters setPage={setPage} setOrder={setOrder} />
-        <div className={styles.divThree}>
-          <button className={styles.button} onClick={(e) => handleClean(e)}>
-            Clean filters
-          </button>
-        </div>
+        <Filters setOrder={setOrder} />
       </div>
-      <br></br>
+      <br />
       <div className={styles.container}>
-        {currentRecipes.length < 1 ? (
+        {currentRecipes?.length < 1 ? (
           <Loading />
         ) : (
-          currentRecipes?.map((r,i) => {
+          currentRecipes?.map((r, i) => {
             return (
               <div className={styles.cards} key={i}>
                 <Card
@@ -77,13 +64,7 @@ export default function Home() {
           })
         )}
       </div>
-      <div>
-        <Pagination
-          recipesPerPage={recipesPerPage}
-          allRecipes={allRecipes.length}
-          pagination={pagination}
-        />
-      </div>
+      <Pagination />
     </div>
   );
 }

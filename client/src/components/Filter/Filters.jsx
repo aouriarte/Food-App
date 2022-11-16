@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  getAllRecipes,
   getAllDiets,
   filterDiets,
   orderTitle,
   orderHealthScore,
-  filterCreated,
+  cleanRecipes,
 } from "../../redux/actions";
 
 import styles from "./Filters.module.css";
+import { BsArrowCounterclockwise } from "react-icons/bs";
 
-export default function Filters({ setPage, setOrder }) {
+export default function Filters({ setOrder }) {
   const dispatch = useDispatch();
   const allDiets = useSelector((state) => state.allDiets);
 
@@ -18,24 +20,29 @@ export default function Filters({ setPage, setOrder }) {
   const handleFilterDiets = (e) => {
     e.preventDefault();
     dispatch(filterDiets(e.target.value));
-    setPage(1);
   };
 
   // ORDENAMIENTOS ------------------------------------------------
   const handleOrderTitle = (e) => {
     e.preventDefault();
     dispatch(orderTitle(e.target.value));
-    setPage(1);
     setOrder(e.target.value);
   };
 
   const handleOrderScore = (e) => {
     e.preventDefault();
     dispatch(orderHealthScore(e.target.value));
-    setPage(1);
     setOrder(e.target.value);
   };
 
+  // LIMPIAR FILTRADOS -------------------------------------------
+  const handleClean = (e) => {
+    e.preventDefault();
+    dispatch(cleanRecipes());
+    dispatch(getAllRecipes());
+  };
+
+  //---------------------------------------------------------------
   useEffect(() => {
     dispatch(getAllDiets());
   }, [dispatch]);
@@ -44,7 +51,6 @@ export default function Filters({ setPage, setOrder }) {
   return (
     <div className={styles.filters}>
       <div className={styles.divOne}>
-        <h4 className={styles.h4}>Filter</h4>
         <select
           className={styles.select}
           onChange={(e) => handleFilterDiets(e)}
@@ -59,9 +65,7 @@ export default function Filters({ setPage, setOrder }) {
           })}
         </select>
       </div>
-
       <div className={styles.divTwo}>
-        <h4 className={styles.h4}>Order</h4>
         <select className={styles.select} onChange={(e) => handleOrderTitle(e)}>
           <option value="ALL">By Title</option>
           <option value="ASC">A-Z</option>
@@ -73,6 +77,9 @@ export default function Filters({ setPage, setOrder }) {
           <option value="MAX">+ HealthScore</option>
         </select>
       </div>
+      <button className={styles.button} onClick={(e) => handleClean(e)}>
+        Reload <BsArrowCounterclockwise  style={{fontSize: '10px'}}/>
+      </button>
     </div>
   );
 }

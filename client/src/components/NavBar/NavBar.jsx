@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import logo from "../../img/logo.png";
 import styles from "./NavBar.module.css";
 
-export default function NavBar({setPage}) {
+export default function NavBar() {
   return (
     <header className={styles.header}>
         <img
@@ -21,7 +21,7 @@ export default function NavBar({setPage}) {
         <button className={styles.button}>Create recipe</button>
       </Link>
       <div className={styles.div}>
-        <SearchBar setPage={setPage} />
+        <SearchBar />
       </div>
     </header>
   );

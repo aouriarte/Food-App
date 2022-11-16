@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const { getTotalInfo } = require('../utils/index.js');
+const { getTotalInfo } = require('../controllers/index.js');
 const { Recipe, Diet } = require('../db');
 
 const router = Router();
@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     } catch (error) {
         console.log('ERROR EN RUTA GET A /recipes', error);
     }
-}); // findAll
+});
 
 // RUTA GET -> /recipes/:id -------------------------------------
 router.get('/:id', async (req, res) => {
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
     } catch (error) {
         console.log('ERROR EN RUTA GET A /recipes/:id', error)
     }
-}); // findOne o findByPk (Primary Key)
+});
 
 // RUTA POST -> /recipes (crear receta) ---------------------
 router.post('/', async (req, res) => {

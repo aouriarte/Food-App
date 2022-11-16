@@ -13,7 +13,7 @@ export default function CardDetails(props) {
 
   useEffect(() => {
     dispatch(getRecipeDetail(props.match.params.id));
-    dispatch(cleanDetail(dispatch));
+    dispatch(cleanDetail());
   }, [dispatch]);
 
   return (

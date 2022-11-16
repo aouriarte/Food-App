@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { postRecipe, getAllDiets, cleanRecipes } from "../../redux/actions";
 import validate from "./validate/validate";
+import swal from "sweetalert";
 
 import styles from "./CreateRecipe.module.css";
 
@@ -57,18 +58,20 @@ export default function CreateRecipe() {
     e.preventDefault();
 
     if (Object.keys(errors).length !== 0) {
-      alert("Error. Check the form");
+      swal("Oops", "Complete the form!", "error");
     } else if (!input.title.length) {
-      alert("The title is required");
-    
+      swal("The title is required");
     } else if (!input.diets.length) {
-      alert("Select at least one diet");
-    } else if (allRecipes.find(r => r.title.toLowerCase() === input.title.toLowerCase())){
-      alert(`The ${input.title} already exists`);
-    }
-    else {
+      swal("Select at least one diet");
+    } else if (
+      allRecipes.find(
+        (r) => r.title.toLowerCase() === input.title.toLowerCase()
+      )
+    ) {
+      swal("Incorrect", `The ${input.title} already exists`, "error");
+    } else {
       dispatch(postRecipe(input));
-      alert("¡Your recipe is created!");
+      swal("Success", "¡Your recipe is created!", "success");
       setInput({
         title: "",
         summary: "",
@@ -77,8 +80,8 @@ export default function CreateRecipe() {
         image: "",
         diets: [],
       });
-      dispatch(cleanRecipes(dispatch));
       history.push("/home");
+      dispatch(cleanRecipes());
     }
   };
 
