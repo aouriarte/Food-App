@@ -1,28 +1,25 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getRecipeDetail, cleanDetail } from "../../redux/actions";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Loading from "../Loading/Loading.jsx";
 
 import img from "../../img/receta.jpg";
 import styles from "./CardDetails.module.css";
 
-export default function CardDetails(props) {
+export default function CardDetails() {
   const dispatch = useDispatch();
-  const recipe = useSelector((state) => state.recipesDetails);
+  const { id } = useParams();
+  const recipe = useSelector((state) => state?.recipesDetails);
 
   useEffect(() => {
-    dispatch(getRecipeDetail(props.match.params.id));
+    dispatch(getRecipeDetail(id));
     dispatch(cleanDetail());
   }, [dispatch]);
 
   return (
     <div className={styles.details}>
-      {recipe.length < 1 ? (
-        <div className={styles.load}>
-          <Loading />
-        </div>
-      ) : (
+      {recipe && recipe ? (
         <div className={styles.container}>
           <div className={styles.card}>
             <div className={styles.header}>
@@ -51,6 +48,10 @@ export default function CardDetails(props) {
               <p>{recipe.steps}</p>
             </div>
           </div>
+        </div>
+      ) : (
+        <div className={styles.load}>
+          <Loading />
         </div>
       )}
       <Link to="/home">

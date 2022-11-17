@@ -1,25 +1,21 @@
 .header {
-  position: relative;
   height: 6rem;
   max-width: 100%;
   padding: 0 5rem;
   display: flex;
   align-items: center;
+  justify-content: space-around;
   background: rgb(153, 133, 97);
   box-shadow: 0rem 0.1875rem 0.375rem rgb(68, 63, 53);
 }
 
 .img {
-  margin-left: 10rem;
-  margin-right: 1rem;
-  margin-bottom: 0.5rem;
+  margin-right: -21rem;
 }
 
 .button {
-  margin-left: 1rem;
   padding: 8px 16px;
   border-radius: 4px;
-  /* border: white; */
   font-weight: 550;
   color: rgb(255, 255, 255);
   background-color: #594a47;
@@ -31,12 +27,4 @@
   background-color: #e9e3d0;
   color: black;
   box-shadow: 0 0 5px 7px #000000a8;
-}
-
-.div {
-  margin-left: 20rem;
-}
-
-.h1 {
-  margin-right: 25rem;
 }

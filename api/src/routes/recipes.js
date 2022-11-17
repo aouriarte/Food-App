@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         let info = await getTotalInfo();
 
         if (name) {
-            let recipeName = info.filter(r => r.title.toLowerCase() === name.toLowerCase());
+            let recipeName = info.filter(r => r.title.toLowerCase().includes(name.toLowerCase()));
             recipeName.length
                 ? res.status(200).send(recipeName)
                 : res.status(404).send('No existe esa receta')

@@ -20,7 +20,7 @@ export const CLEAN_DETAILS = 'CLEAN_DETAILS';
 export const getAllRecipes = () => {
     return async (dispatch) => {
         try {
-            let infoAll = await axios.get('http://localhost:3001/recipes');
+            let infoAll = await axios.get('/recipes');
             dispatch({ type: GET_ALL_RECIPES, payload: infoAll.data });
 
         } catch (error) {
@@ -33,7 +33,7 @@ export const getAllRecipes = () => {
 export const getRecipeName = (name) => {
     return async (dispatch) => {
         try {
-            let infoName = await axios.get(`http://localhost:3001/recipes?name=${name}`);
+            let infoName = await axios.get(`/recipes?name=${name}`);
             dispatch({ type: GET_RECIPE_NAME, payload: infoName.data });
 
         } catch (error) {
@@ -47,7 +47,7 @@ export const getRecipeName = (name) => {
 export const getRecipeDetail = (id) => {
     return async (dispatch) => {
         try {
-            let infoDetails = await axios.get(`http://localhost:3001/recipes/${id}`);
+            let infoDetails = await axios.get(`/recipes/${id}`);
             dispatch({ type: GET_RECIPE_DETAILS, payload: infoDetails.data });
 
         } catch (error) {
@@ -60,7 +60,7 @@ export const getRecipeDetail = (id) => {
 export const postRecipe = (payload) => {
     try {
         return async () => {
-            let newRecipe = await axios.post('http://localhost:3001/recipes', payload);
+            let newRecipe = await axios.post('/recipes', payload);
             return newRecipe;
         };
     } catch (error) {
@@ -72,7 +72,7 @@ export const postRecipe = (payload) => {
 export const getAllDiets = () => {
     return async (dispatch) => {
         try {
-            let diets = await axios.get('http://localhost:3001/diets');
+            let diets = await axios.get('/diets');
             dispatch({ type: GET_ALL_DIETS, payload: diets.data });
 
         } catch (error) {
@@ -81,6 +81,13 @@ export const getAllDiets = () => {
     };
 };
 
+// PAGINADO: Cambiar de página --------------------------------------------------------
+export const changePage = (payload) => {
+    return {
+        type: CHANGE_PAGE,
+        payload
+    };
+};
 
 // Filtrados y Ordenamientos -----------------------------------------------------------
 // Filtrar por DIETS:
@@ -109,22 +116,16 @@ export const orderHealthScore = (payload) => {
 
 // Limpiar Filtrados y Ordenamientos
 export const cleanRecipes = () => {
-    return{
+    return {
         type: CLEAN_RECIPES,
     };
 };
 
 // Limpiar Detalles 
-export const cleanDetail = () => {
+export const cleanDetail = (payload) => {
     return {
         type: CLEAN_DETAILS,
-    };
-};
-
-// PAGINADO: Cambiar de página --------------------------------------------------------
-export const changePage = (payload) => {
-    return {
-        type: CHANGE_PAGE,
         payload
     };
 };
+

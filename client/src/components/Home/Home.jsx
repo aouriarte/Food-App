@@ -10,7 +10,7 @@ import Loading from "../Loading/Loading.jsx";
 
 import styles from "./Home.module.css";
 
-export default function Home() {
+const Home = () => {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state?.recipes);
 
@@ -37,10 +37,7 @@ export default function Home() {
   return (
     <div className={styles.home}>
       <NavBar />
-      <div className={styles.filter}>
-        <Filters setOrder={setOrder} />
-      </div>
-      <br />
+      <Filters setOrder={setOrder} />
       <div className={styles.container}>
         {currentRecipes?.length < 1 ? (
           <Loading />
@@ -64,7 +61,11 @@ export default function Home() {
           })
         )}
       </div>
-      <Pagination />
+      <div>
+        <Pagination />
+      </div>
     </div>
   );
-}
+};
+
+export default Home;

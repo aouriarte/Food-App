@@ -51,11 +51,16 @@ const rootReducer = (state = initialState, { type, payload }) => {
             return {
                 ...state,
             };
+        case CHANGE_PAGE:
+            return {
+                ...state,
+                currentPage: Number(payload) ? parseInt(payload) : payload === 'Next' ? (parseInt(state.currentPage) + 1) : (parseInt(state.currentPage) - 1)
+            };
         case FILTER_DIETS:
             let copyAll = state.allRecipes;
             let filterDiets = payload === "all"
-            ? copyAll
-            : copyAll.filter((r) => r.diets.includes(payload));
+                ? copyAll
+                : copyAll.filter((r) => r.diets.includes(payload));
             return {
                 ...state,
                 recipes: filterDiets,
@@ -119,11 +124,6 @@ const rootReducer = (state = initialState, { type, payload }) => {
                 recipes: sortScore,
                 currentPage: 1
             };
-        case CHANGE_PAGE:
-            return {
-                ...state,
-                currentPage: Number(payload) ? parseInt(payload) : payload === 'Next' ? (parseInt(state.currentPage) + 1) : (parseInt(state.currentPage) - 1)
-            };
         case CLEAN_RECIPES:
             return {
                 ...state,
@@ -132,7 +132,7 @@ const rootReducer = (state = initialState, { type, payload }) => {
         case CLEAN_DETAILS:
             return {
                 ...state,
-                recipesDetails: []
+                recipesDetails: payload
             };
         default: {
             return state

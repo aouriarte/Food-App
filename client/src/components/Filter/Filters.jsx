@@ -10,7 +10,6 @@ import {
 } from "../../redux/actions";
 
 import styles from "./Filters.module.css";
-import { BsArrowCounterclockwise } from "react-icons/bs";
 
 export default function Filters({ setOrder }) {
   const dispatch = useDispatch();
@@ -50,36 +49,29 @@ export default function Filters({ setOrder }) {
   // ---------------------------------------------------------------
   return (
     <div className={styles.filters}>
-      <div className={styles.divOne}>
-        <select
-          className={styles.select}
-          onChange={(e) => handleFilterDiets(e)}
-        >
-          <option value="all">Select Diet</option>
-          {allDiets?.map((d) => {
-            return (
-              <option key={d.id} value={d.name}>
-                {d.name.charAt(0).toUpperCase() + d.name.slice(1)}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <div className={styles.divTwo}>
-        <select className={styles.select} onChange={(e) => handleOrderTitle(e)}>
-          <option value="ALL">By Title</option>
-          <option value="ASC">A-Z</option>
-          <option value="DESC">Z-A</option>
-        </select>
-        <select className={styles.select} onChange={(e) => handleOrderScore(e)}>
-          <option value="ALL">By HealthScore</option>
-          <option value="MIN">- HealthScore</option>
-          <option value="MAX">+ HealthScore</option>
-        </select>
-      </div>
-      <button className={styles.button} onClick={(e) => handleClean(e)}>
-        Reload <BsArrowCounterclockwise  style={{fontSize: '10px'}}/>
+      <button className={styles.reset} onClick={(e) => handleClean(e)}>
+        Reload
       </button>
+      <select className={styles.select} onChange={(e) => handleFilterDiets(e)}>
+        <option value="all">Select Diet</option>
+        {allDiets?.map((d) => {
+          return (
+            <option key={d.id} value={d.name}>
+              {d.name.charAt(0).toUpperCase() + d.name.slice(1)}
+            </option>
+          );
+        })}
+      </select>
+      <select className={styles.select} onChange={(e) => handleOrderTitle(e)}>
+        <option value="ALL">By Title</option>
+        <option value="ASC">A-Z</option>
+        <option value="DESC">Z-A</option>
+      </select>
+      <select className={styles.select} onChange={(e) => handleOrderScore(e)}>
+        <option value="ALL">By HealthScore</option>
+        <option value="MIN">- HealthScore</option>
+        <option value="MAX">+ HealthScore</option>
+      </select>
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../../redux/actions";
 
 import "./Pagination.css";
-import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 export default function Pagination() {
   const dispatch = useDispatch();
@@ -24,20 +23,15 @@ export default function Pagination() {
   return (
     <div>
       <ul className="ul">
-        {pageNumbers && currentPage > 1 ? <button className="page_button" value="Prev" onClick={(e) => handleChangePage(e)}>
-            <BsChevronLeft style={{fontSize: '14px'}} /></button> : null}
-        {pageNumbers?.map((number) => (
-          <button
-            key={number}
-            className={currentPage === number ? "current" : "page_button"}
-            value={number}
-            onClick={(e) => handleChangePage(e)}
-          >
-            {number}
-          </button>
-        ))}
-        {pageNumbers && currentPage < pageNumbers.length ? <button className="page_button" value="Next" onClick={(e) => handleChangePage(e)}>
-            <BsChevronRight style={{fontSize: '14px'}} /></button> : null}
+      {pageNumbers && currentPage > 1 ? <button className="page_button" value='Prev' onClick={handleChangePage}>
+        {"<"}
+      </button> : null}
+      {pageNumbers?.map(number => (
+                    <button key={number} className={currentPage === number ? "current" : "page_button"} value={number} onClick={handleChangePage}>{number}</button>
+                ))}
+      {pageNumbers && currentPage < pageNumbers.length ? <button className="page_button" value='Next' onClick={handleChangePage}>
+      {">"}
+      </button> : null}
       </ul>
     </div>
   );

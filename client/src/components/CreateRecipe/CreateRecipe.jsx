@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { postRecipe, getAllDiets, cleanRecipes } from "../../redux/actions";
+import { postRecipe, getAllDiets, cleanRecipes, getAllRecipes } from "../../redux/actions";
 import validate from "./validate/validate";
 import swal from "sweetalert";
 
@@ -82,11 +82,13 @@ export default function CreateRecipe() {
       });
       history.push("/home");
       dispatch(cleanRecipes());
+      dispatch(getAllRecipes());
     }
   };
 
   useEffect(() => {
     dispatch(getAllDiets());
+    dispatch(getAllRecipes());
   }, [dispatch]);
 
   //--------------------------------------------------------------------------------------
