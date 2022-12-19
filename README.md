@@ -27,15 +27,14 @@ Food App es una SPA (Single Page Application).
 ## 🛠️ Tecnologías Usadas 
 
 - __JavaScript__
-- __HMTL__
+- __HTML__
 - __CSS__
 - __React.js__
 - __Redux.js__
 - __Node.js__
 - __Express.js__
-- __PostgreSQL__
-- __SQL__
 - __Sequelize.js__
+- __PostgreSQL__
 
 ## 💻 Demo
 
