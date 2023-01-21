@@ -38,4 +38,4 @@ Food App es una SPA (Single Page Application).
 
 ## 💻 Demo
 
-Para visitar la aplicación web [click aquí](https://pi-food-aouriarte.vercel.app).
+Para visitar la aplicación web [click aquí](https://food-app-aouriarte.vercel.app).
